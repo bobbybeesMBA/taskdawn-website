@@ -1,0 +1,250 @@
+/*
+ * Task Dawn v1.0.0 Alpha
+ * Stylesheet for Task Dawn Landing Page
+ * Compatible with IE6, Netscape 7, Mozilla Firefox 1.0
+ * Last Updated: 2003
+ */
+
+/* === RESET & BASE === */
+body {
+    background-color: #CCCCCC;
+    font-family: Tahoma, Arial, "MS Sans Serif", sans-serif;
+    font-size: 12px;
+    color: #000000;
+    margin: 0;
+    padding: 20px 0;
+}
+
+/* === LINKS === */
+a:link {
+    color: #0000FF;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #800080;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #FF0000;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #FF0000;
+}
+
+/* === MAIN CONTAINER === */
+.main-container {
+    background-color: #F0F0F0;
+    border: 2px outset #FFFFFF;
+}
+
+/* === HEADER === */
+.header-cell {
+    background-color: #E8E8E8;
+    padding: 5px;
+}
+
+.site-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #003399;
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: 2px;
+}
+
+.version-tag {
+    font-size: 11px;
+    color: #666666;
+    font-weight: bold;
+}
+
+.tagline {
+    font-size: 13px;
+    color: #333333;
+}
+
+/* === SUN LOGO === */
+.sun-logo {
+    background-color: #FFFFCC;
+    border: 2px inset #CCCCCC;
+    padding: 2px;
+    width: 70px;
+    height: 60px;
+    overflow: hidden;
+}
+
+.logo-art {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 8px;
+    color: #FF6600;
+    line-height: 8px;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* === SIDEBAR === */
+.sidebar-cell {
+    background-color: #E0E0E0;
+    padding: 10px;
+    border-right: 1px solid #999999;
+}
+
+.nav-fieldset {
+    background-color: #F0F0F0;
+    border: 2px groove #CCCCCC;
+    padding: 8px;
+    margin: 0;
+}
+
+.nav-fieldset legend {
+    color: #003399;
+    font-size: 11px;
+    padding: 0 5px;
+}
+
+.nav-link {
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* === CONTENT AREA === */
+.content-cell {
+    padding: 15px;
+    background-color: #F0F0F0;
+}
+
+/* === VALUE PROPOSITION BOX === */
+.value-prop-box {
+    background-color: #FFFFCC;
+    border: 3px double #CC9900;
+    padding: 0;
+}
+
+.highlight-text {
+    color: #333333;
+    line-height: 1.5;
+}
+
+/* === SECTION HEADERS === */
+.section-header {
+    color: #003399;
+    font-size: 13px;
+}
+
+.section-header:hover {
+    text-decoration: underline;
+}
+
+/* === FIELDSETS === */
+fieldset {
+    border: 2px groove #CCCCCC;
+    background-color: #F8F8F8;
+    padding: 10px;
+    margin: 0;
+}
+
+fieldset legend {
+    color: #003399;
+    font-size: 12px;
+    padding: 0 8px;
+    background-color: #F0F0F0;
+}
+
+/* === FEATURE TABLE === */
+.feature-table {
+    background-color: #FFFFFF;
+}
+
+.feature-table th {
+    text-align: left;
+}
+
+/* === DOWNLOAD BUTTON === */
+.download-button {
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFFFFF !important;
+    background-color: #003399;
+    padding: 5px 15px;
+    border: 2px outset #6699CC;
+    text-decoration: none !important;
+    display: inline-block;
+}
+
+.download-button:hover {
+    background-color: #0044CC;
+    border-style: inset;
+    color: #FFFFFF !important;
+}
+
+.download-button:visited {
+    color: #FFFFFF !important;
+}
+
+/* === FOOTER === */
+.footer-cell {
+    background-color: #E0E0E0;
+    padding: 10px;
+    text-align: center;
+}
+
+.visitor-counter {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    color: #006600;
+    background-color: #000000;
+    padding: 2px 5px;
+    border: 1px inset #333333;
+}
+
+/* === HORIZONTAL RULES === */
+hr {
+    height: 1px;
+}
+
+/* === MISC === */
+pre {
+    margin: 0;
+    padding: 0;
+}
+
+center {
+    text-align: center;
+}
+
+/* === T1 BADGE === */
+.t1-badge {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 10px;
+    color: #006600;
+}
+
+/* === GUESTBOOK BUTTON === */
+.guestbook-button {
+    font-size: 11px;
+    font-weight: bold;
+    color: #FFFFFF !important;
+    background-color: #669966;
+    padding: 4px 12px;
+    border: 2px outset #99CC99;
+    text-decoration: none !important;
+    display: inline-block;
+}
+
+.guestbook-button:hover {
+    background-color: #558855;
+    border-style: inset;
+    color: #FFFFFF !important;
+}
+
+.guestbook-button:visited {
+    color: #FFFFFF !important;
+}
+
+/* === MANIFESTO FIELDSET === */
+.manifesto-fieldset {
+    background-color: #FFFFF8;
+}
