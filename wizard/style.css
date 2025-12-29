@@ -1,0 +1,422 @@
+/*
+ * Task Dawn v1.0.0 Alpha - Setup Wizard
+ * Stylesheet for Task Dawn Setup Wizard
+ * Compatible with IE6, Netscape 7, Mozilla Firefox 1.0
+ * Last Updated: 2003
+ */
+
+/* === RESET & BASE === */
+body {
+    background-color: #CCCCCC;
+    font-family: Tahoma, Arial, "MS Sans Serif", sans-serif;
+    font-size: 12px;
+    color: #000000;
+    margin: 0;
+    padding: 20px 0;
+}
+
+/* === LINKS === */
+a:link {
+    color: #0000FF;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #800080;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #FF0000;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #FF0000;
+}
+
+/* === MAIN CONTAINER === */
+.main-container {
+    background-color: #F0F0F0;
+    border: 2px outset #FFFFFF;
+}
+
+/* === HEADER === */
+.header-cell {
+    background-color: #E8E8E8;
+    padding: 5px;
+}
+
+.site-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #003399;
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: 2px;
+}
+
+.version-tag {
+    font-size: 11px;
+    color: #666666;
+    font-weight: bold;
+}
+
+.tagline {
+    font-size: 13px;
+    color: #333333;
+}
+
+.blink-text {
+    font-size: 12px;
+    font-weight: bold;
+    color: #FF0000;
+    animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* === SUN LOGO === */
+.sun-logo {
+    background-color: #FFFFCC;
+    border: 2px inset #CCCCCC;
+    padding: 2px;
+    width: 70px;
+    height: 60px;
+    overflow: hidden;
+}
+
+.logo-art {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 8px;
+    color: #FF6600;
+    line-height: 8px;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* === SIDEBAR === */
+.sidebar-cell {
+    background-color: #E0E0E0;
+    padding: 10px;
+    border-right: 1px solid #999999;
+}
+
+.nav-fieldset {
+    background-color: #F0F0F0;
+    border: 2px groove #CCCCCC;
+    padding: 8px;
+    margin: 0;
+}
+
+.nav-fieldset legend {
+    color: #003399;
+    font-size: 11px;
+    padding: 0 5px;
+}
+
+.nav-step {
+    font-size: 11px;
+    color: #666666;
+    padding: 2px 0;
+}
+
+.nav-step.active-step {
+    font-weight: bold;
+    color: #003399;
+}
+
+.nav-step.completed-step {
+    color: #009900;
+}
+
+/* === CONTENT AREA === */
+.content-cell {
+    padding: 15px;
+    background-color: #F0F0F0;
+}
+
+/* === PROGRESS BAR === */
+.progress-container {
+    background-color: #E8E8E8;
+    border: 2px groove #CCCCCC;
+    padding: 10px;
+}
+
+.progress-step {
+    text-align: center;
+    padding: 5px;
+}
+
+.progress-step .step-number {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 0;
+    background-color: #CCCCCC;
+    border: 2px outset #DDDDDD;
+    color: #666666;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.progress-step.progress-active .step-number {
+    background-color: #003399;
+    color: #FFFFFF;
+    border: 2px outset #6699CC;
+}
+
+.progress-step.progress-completed .step-number {
+    background-color: #009900;
+    color: #FFFFFF;
+    border: 2px outset #66CC66;
+}
+
+.progress-step .step-label {
+    font-size: 10px;
+    color: #666666;
+}
+
+.progress-step.progress-active .step-label {
+    font-weight: bold;
+    color: #003399;
+}
+
+.progress-step.progress-completed .step-label {
+    color: #009900;
+}
+
+.progress-bar-track {
+    background-color: #CCCCCC;
+    border: 2px inset #999999;
+    height: 15px;
+    margin-top: 10px;
+}
+
+.progress-bar-fill {
+    background-color: #003399;
+    height: 100%;
+    transition: width 0.3s ease;
+    background-image: linear-gradient(
+        45deg,
+        #004499 25%,
+        #003399 25%,
+        #003399 50%,
+        #004499 50%,
+        #004499 75%,
+        #003399 75%,
+        #003399 100%
+    );
+    background-size: 20px 20px;
+}
+
+/* === SECTION HEADERS === */
+.section-header {
+    color: #003399;
+    font-size: 13px;
+}
+
+.section-header:hover {
+    text-decoration: underline;
+}
+
+/* === FIELDSETS === */
+fieldset {
+    border: 2px groove #CCCCCC;
+    background-color: #F8F8F8;
+    padding: 10px;
+    margin: 0;
+}
+
+fieldset legend {
+    color: #003399;
+    font-size: 12px;
+    padding: 0 8px;
+    background-color: #F0F0F0;
+}
+
+.token-fieldset {
+    background-color: #F5F5F5;
+}
+
+/* === RETRO INPUTS === */
+.retro-input {
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+    padding: 4px 6px;
+    border: 2px inset #CCCCCC;
+    background-color: #FFFFFF;
+}
+
+.retro-input:focus {
+    background-color: #FFFFCC;
+    outline: none;
+}
+
+.retro-input.token-display {
+    background-color: #F0F0F0;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 10px;
+    color: #333333;
+}
+
+/* === BUTTONS === */
+.retro-button {
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #003399;
+    padding: 8px 20px;
+    border: 2px outset #6699CC;
+    cursor: pointer;
+}
+
+.retro-button:hover:not(:disabled) {
+    background-color: #004499;
+}
+
+.retro-button:active:not(:disabled) {
+    border-style: inset;
+}
+
+.retro-button:disabled {
+    background-color: #999999;
+    color: #CCCCCC;
+    border-color: #AAAAAA;
+    cursor: not-allowed;
+}
+
+.retro-button-secondary {
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #333333;
+    background-color: #E0E0E0;
+    padding: 6px 15px;
+    border: 2px outset #FFFFFF;
+    cursor: pointer;
+}
+
+.retro-button-secondary:hover {
+    background-color: #D0D0D0;
+}
+
+.retro-button-secondary:active {
+    border-style: inset;
+}
+
+.deploy-button {
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #CC0000;
+    padding: 15px 40px;
+    border: 3px outset #FF6666;
+    cursor: pointer;
+}
+
+.deploy-button:hover:not(:disabled) {
+    background-color: #DD0000;
+}
+
+.deploy-button:active:not(:disabled) {
+    border-style: inset;
+}
+
+.deploy-button:disabled {
+    background-color: #999999;
+    color: #CCCCCC;
+    border-color: #AAAAAA;
+    cursor: not-allowed;
+}
+
+/* === CONSOLE OUTPUT === */
+.console-output {
+    background-color: #000000;
+    border: 2px inset #333333;
+    padding: 10px;
+    height: 100px;
+    overflow-y: auto;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11px;
+    color: #00FF00;
+}
+
+.console-output .error {
+    color: #FF0000;
+}
+
+.console-output .success {
+    color: #00FF00;
+}
+
+.console-output .info {
+    color: #FFFF00;
+}
+
+/* === STATUS INDICATORS === */
+.status-pending {
+    color: #999999;
+}
+
+.status-complete {
+    color: #009900;
+}
+
+.status-error {
+    color: #CC0000;
+}
+
+/* === SUMMARY TABLE === */
+.summary-table {
+    background-color: #FFFFFF;
+}
+
+/* === FOOTER === */
+.footer-cell {
+    background-color: #E0E0E0;
+    padding: 10px;
+    text-align: center;
+}
+
+.visitor-counter {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    color: #006600;
+    background-color: #000000;
+    padding: 2px 5px;
+    border: 1px inset #333333;
+}
+
+.t1-badge {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 10px;
+    color: #006600;
+}
+
+/* === MISC === */
+pre {
+    margin: 0;
+    padding: 0;
+}
+
+center {
+    text-align: center;
+}
+
+code {
+    font-family: "Courier New", Courier, monospace;
+    background-color: #E8E8E8;
+    padding: 1px 4px;
+    border: 1px solid #CCCCCC;
+}
+
+/* === STEP CONTENT VISIBILITY === */
+.step-content {
+    display: block;
+}
