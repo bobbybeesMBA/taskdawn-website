@@ -335,6 +335,17 @@ async function deploySecrets() {
     
     logToConsole(consoleId, 'Starting deployment...', 'info');
     
+    // Check if libsodium is loaded
+    logToConsole(consoleId, 'Checking libsodium: ' + (typeof sodium !== 'undefined' ? 'LOADED' : 'NOT LOADED'), 'info');
+    
+    if (typeof sodium === 'undefined') {
+        logToConsole(consoleId, 'ERROR: libsodium library not loaded!', 'error');
+        logToConsole(consoleId, 'Please refresh the page and try again.', 'error');
+        btn.disabled = false;
+        btn.textContent = '⚡ [ DEPLOY TO GITHUB ] ⚡';
+        return;
+    }
+    
     const headers = {
         'Authorization': 'token ' + AppState.github.pat,
         'Accept': 'application/vnd.github.v3+json',
@@ -345,13 +356,22 @@ async function deploySecrets() {
     const repo = AppState.github.repoName;
     
     try {
+        // Wait for sodium to be ready
+        logToConsole(consoleId, 'Initializing encryption...', 'info');
+        await sodium.ready;
+        logToConsole(consoleId, 'Encryption ready', 'success');
+        
         logToConsole(consoleId, 'Getting public key...', 'info');
         const keyRes = await fetch('https://api.github.com/repos/' + owner + '/' + repo + '/actions/secrets/public-key', { headers });
         
-        if (!keyRes.ok) throw new Error('Failed to get public key');
+        if (!keyRes.ok) {
+            const keyErr = await keyRes.json().catch(() => ({}));
+            logToConsole(consoleId, 'Public key error: ' + JSON.stringify(keyErr), 'error');
+            throw new Error('Failed to get public key: ' + (keyErr.message || keyRes.status));
+        }
         
         const keyData = await keyRes.json();
-        logToConsole(consoleId, 'Public key obtained', 'success');
+        logToConsole(consoleId, 'Public key obtained (key_id: ' + keyData.key_id + ')', 'success');
         
         const secrets = {
             'GOOGLE_CLIENT_ID': AppState.google.clientId,
@@ -360,22 +380,36 @@ async function deploySecrets() {
         };
         
         for (const [name, value] of Object.entries(secrets)) {
-            logToConsole(consoleId, 'Deploying ' + name + '...', 'info');
+            logToConsole(consoleId, 'Encrypting ' + name + '...', 'info');
             
-            const encrypted = await encryptSecret(value, keyData.key);
-            
-            const res = await fetch('https://api.github.com/repos/' + owner + '/' + repo + '/actions/secrets/' + name, {
-                method: 'PUT',
-                headers,
-                body: JSON.stringify({ encrypted_value: encrypted, key_id: keyData.key_id })
-            });
-            
-            if (res.ok || res.status === 201 || res.status === 204) {
-                logToConsole(consoleId, name + ' deployed!', 'success');
-            } else {
-                const errBody = await res.json().catch(() => ({}));
-                logToConsole(consoleId, 'Status: ' + res.status + ' - ' + (errBody.message || 'Unknown'), 'error');
-                throw new Error('Failed to deploy ' + name + ': ' + (errBody.message || res.status));
+            try {
+                // Encrypt the secret
+                const binkey = sodium.from_base64(keyData.key, sodium.base64_variants.ORIGINAL);
+                const binsec = sodium.from_string(value);
+                const encBytes = sodium.crypto_box_seal(binsec, binkey);
+                const encrypted = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
+                
+                logToConsole(consoleId, 'Deploying ' + name + '...', 'info');
+                
+                const res = await fetch('https://api.github.com/repos/' + owner + '/' + repo + '/actions/secrets/' + name, {
+                    method: 'PUT',
+                    headers,
+                    body: JSON.stringify({ 
+                        encrypted_value: encrypted, 
+                        key_id: keyData.key_id 
+                    })
+                });
+                
+                if (res.ok || res.status === 201 || res.status === 204) {
+                    logToConsole(consoleId, name + ' deployed!', 'success');
+                } else {
+                    const errBody = await res.json().catch(() => ({}));
+                    logToConsole(consoleId, 'GitHub responded: ' + res.status + ' - ' + JSON.stringify(errBody), 'error');
+                    throw new Error('Failed to deploy ' + name + ': ' + (errBody.message || res.status));
+                }
+            } catch (encErr) {
+                logToConsole(consoleId, 'Error with ' + name + ': ' + encErr.message, 'error');
+                throw encErr;
             }
         }
         
@@ -393,7 +427,7 @@ async function deploySecrets() {
         btn.textContent = '✓ DEPLOYED';
         
     } catch (err) {
-        logToConsole(consoleId, 'ERROR: ' + err.message, 'error');
+        logToConsole(consoleId, 'DEPLOYMENT FAILED: ' + err.message, 'error');
         alert('Deployment failed: ' + err.message);
         btn.disabled = false;
         btn.textContent = '⚡ [ DEPLOY TO GITHUB ] ⚡';
