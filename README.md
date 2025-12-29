@@ -1,80 +1,56 @@
-# Task Dawn Setup Wizard v1.0.0
+# Task Dawn v1.0.0 Alpha
 
-> A retro-styled SaaS onboarding wizard with 2003 shareware aesthetics
+> "Ignite your day with prioritized tasks in your inbox."
 
-## Overview
+A retro-styled task management landing page and setup wizard with authentic 2003 shareware aesthetics.
 
-This is a single-page application (SPA) that guides users through:
-1. **Google OAuth2** - Connecting their Google account for Tasks API access
-2. **GitHub Authorization** - Creating a private repository for the automation engine
-3. **Secret Deployment** - Securely storing Google credentials as GitHub Secrets
+## Project Structure
 
-## Files
-
-- `index.html` - Main wizard interface
-- `style.css` - 2003 shareware aesthetic styling
-- `app.js` - SPA logic with OAuth and GitHub API integration
-
-## Setup Requirements
-
-### Google OAuth2 Credentials
-
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select existing
-3. Enable the **Google Tasks API**
-4. Go to **Credentials** → **Create Credentials** → **OAuth 2.0 Client IDs**
-5. Configure consent screen if needed
-6. Set application type to **Web application**
-7. Add your domain to **Authorized redirect URIs** (e.g., `https://taskdawn.com/wizard/`)
-8. Copy the **Client ID** and **Client Secret**
-
-### GitHub Personal Access Token
-
-1. Go to [GitHub Settings → Tokens](https://github.com/settings/tokens/new)
-2. Generate a new token with these scopes:
-   - `repo` (Full control of private repositories)
-   - `workflow` (Update GitHub Action workflows)
-3. Copy the token (starts with `ghp_`)
-
-## Production Notes
-
-### Encryption for GitHub Secrets
-
-The wizard uses GitHub's encrypted secrets API. For production deployment, add the libsodium library:
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/libsodium-wrappers@0.7.11/dist/modules/libsodium-wrappers.min.js"></script>
+```
+taskdawn.com/
+├── index.html          ← Landing page (root)
+├── style.css           ← Landing page styles
+├── CNAME               ← Custom domain config
+├── README.md           ← This file
+└── wizard/
+    ├── index.html      ← Setup wizard SPA
+    ├── wizard-style.css ← Wizard styles
+    └── wizard-app.js   ← OAuth & GitHub API logic
 ```
 
-### Security Considerations
+## Pages
 
-- **Client Secret Exposure**: The current implementation exposes the Google Client Secret in the browser. For production:
-  - Use a backend proxy to handle token exchange
-  - Or use Google's "Desktop app" OAuth flow
-  
-- **Token Storage**: Tokens are stored in `sessionStorage` which clears on browser close. This is intentional for security.
+### Landing Page (`/`)
+- Product overview and features
+- "No-App Manifesto" philosophy
+- Roadmap and guestbook
+- **CTA button** → links to `/wizard/`
 
-- **HTTPS Required**: OAuth2 requires HTTPS in production.
+### Setup Wizard (`/wizard/`)
+- 3-step onboarding flow
+- Google OAuth2 authentication
+- GitHub repo creation via API
+- Secret deployment to GitHub
 
 ## Deployment
 
-Upload all files to your GitHub Pages repository:
+Already configured for GitHub Pages with custom domain `taskdawn.com`.
 
-```
-taskdawn-website/
-├── index.html        (original landing page)
-├── style.css
-├── wizard/
-│   ├── index.html    (this wizard)
-│   ├── style.css
-│   └── app.js
-└── CNAME
-```
+Just push to GitHub and ensure Pages is enabled in Settings.
 
-Then link to the wizard from your main page:
-```html
-<a href="wizard/">[START SETUP WIZARD]</a>
-```
+## OAuth Redirect URI
+
+**IMPORTANT:** Update your Google Cloud Console:
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Select your project
+3. Go to **APIs & Services** → **Credentials**
+4. Edit your OAuth 2.0 Client ID
+5. Under **Authorized redirect URIs**, add:
+   ```
+   https://taskdawn.com/wizard/index.html
+   ```
+6. Save changes
 
 ## License
 

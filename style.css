@@ -1,6 +1,6 @@
 /*
- * Task Dawn v1.0.0 Alpha - Setup Wizard
- * Stylesheet for Task Dawn Setup Wizard
+ * Task Dawn v1.0.0 Alpha
+ * Stylesheet for Task Dawn Landing Page
  * Compatible with IE6, Netscape 7, Mozilla Firefox 1.0
  * Last Updated: 2003
  */
@@ -66,17 +66,6 @@ a:active {
     color: #333333;
 }
 
-.blink-text {
-    font-size: 12px;
-    font-weight: bold;
-    color: #FF0000;
-    animation: blink 1s step-start infinite;
-}
-
-@keyframes blink {
-    50% { opacity: 0; }
-}
-
 /* === SUN LOGO === */
 .sun-logo {
     background-color: #FFFFCC;
@@ -116,19 +105,9 @@ a:active {
     padding: 0 5px;
 }
 
-.nav-step {
+.nav-link {
     font-size: 11px;
-    color: #666666;
-    padding: 2px 0;
-}
-
-.nav-step.active-step {
     font-weight: bold;
-    color: #003399;
-}
-
-.nav-step.completed-step {
-    color: #009900;
 }
 
 /* === CONTENT AREA === */
@@ -137,80 +116,56 @@ a:active {
     background-color: #F0F0F0;
 }
 
-/* === PROGRESS BAR === */
-.progress-container {
-    background-color: #E8E8E8;
-    border: 2px groove #CCCCCC;
-    padding: 10px;
+/* === CTA BOX - PRIMARY CALL TO ACTION === */
+.cta-box {
+    animation: cta-pulse 2s ease-in-out infinite;
 }
 
-.progress-step {
-    text-align: center;
-    padding: 5px;
+@keyframes cta-pulse {
+    0%, 100% { 
+        box-shadow: 0 0 5px #FF6600;
+    }
+    50% { 
+        box-shadow: 0 0 15px #FF6600, 0 0 25px #FFCC00;
+    }
 }
 
-.progress-step .step-number {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 0;
-    background-color: #CCCCCC;
-    border: 2px outset #DDDDDD;
-    color: #666666;
-    font-weight: bold;
-    font-size: 14px;
+.cta-button {
     display: inline-block;
-    margin-bottom: 5px;
-}
-
-.progress-step.progress-active .step-number {
-    background-color: #003399;
-    color: #FFFFFF;
-    border: 2px outset #6699CC;
-}
-
-.progress-step.progress-completed .step-number {
-    background-color: #009900;
-    color: #FFFFFF;
-    border: 2px outset #66CC66;
-}
-
-.progress-step .step-label {
-    font-size: 10px;
-    color: #666666;
-}
-
-.progress-step.progress-active .step-label {
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 14px;
     font-weight: bold;
-    color: #003399;
+    color: #FFFFFF !important;
+    background-color: #CC3300;
+    padding: 12px 25px;
+    border: 3px outset #FF6633;
+    text-decoration: none !important;
+    cursor: pointer;
 }
 
-.progress-step.progress-completed .step-label {
-    color: #009900;
+.cta-button:hover {
+    background-color: #DD4400;
+    color: #FFFFFF !important;
 }
 
-.progress-bar-track {
-    background-color: #CCCCCC;
-    border: 2px inset #999999;
-    height: 15px;
-    margin-top: 10px;
+.cta-button:active {
+    border-style: inset;
 }
 
-.progress-bar-fill {
-    background-color: #003399;
-    height: 100%;
-    transition: width 0.3s ease;
-    background-image: linear-gradient(
-        45deg,
-        #004499 25%,
-        #003399 25%,
-        #003399 50%,
-        #004499 50%,
-        #004499 75%,
-        #003399 75%,
-        #003399 100%
-    );
-    background-size: 20px 20px;
+.cta-button:visited {
+    color: #FFFFFF !important;
+}
+
+/* === VALUE PROPOSITION BOX === */
+.value-prop-box {
+    background-color: #FFFFCC;
+    border: 3px double #CC9900;
+    padding: 0;
+}
+
+.highlight-text {
+    color: #333333;
+    line-height: 1.5;
 }
 
 /* === SECTION HEADERS === */
@@ -238,143 +193,35 @@ fieldset legend {
     background-color: #F0F0F0;
 }
 
-.token-fieldset {
-    background-color: #F5F5F5;
-}
-
-/* === RETRO INPUTS === */
-.retro-input {
-    font-family: Tahoma, Arial, sans-serif;
-    font-size: 11px;
-    padding: 4px 6px;
-    border: 2px inset #CCCCCC;
+/* === FEATURE TABLE === */
+.feature-table {
     background-color: #FFFFFF;
 }
 
-.retro-input:focus {
-    background-color: #FFFFCC;
-    outline: none;
+.feature-table th {
+    text-align: left;
 }
 
-.retro-input.token-display {
-    background-color: #F0F0F0;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 10px;
-    color: #333333;
-}
-
-/* === BUTTONS === */
-.retro-button {
-    font-family: Tahoma, Arial, sans-serif;
+/* === DOWNLOAD BUTTON === */
+.download-button {
     font-size: 12px;
     font-weight: bold;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     background-color: #003399;
-    padding: 8px 20px;
+    padding: 5px 15px;
     border: 2px outset #6699CC;
-    cursor: pointer;
+    text-decoration: none !important;
+    display: inline-block;
 }
 
-.retro-button:hover:not(:disabled) {
-    background-color: #004499;
-}
-
-.retro-button:active:not(:disabled) {
+.download-button:hover {
+    background-color: #0044CC;
     border-style: inset;
+    color: #FFFFFF !important;
 }
 
-.retro-button:disabled {
-    background-color: #999999;
-    color: #CCCCCC;
-    border-color: #AAAAAA;
-    cursor: not-allowed;
-}
-
-.retro-button-secondary {
-    font-family: Tahoma, Arial, sans-serif;
-    font-size: 11px;
-    font-weight: bold;
-    color: #333333;
-    background-color: #E0E0E0;
-    padding: 6px 15px;
-    border: 2px outset #FFFFFF;
-    cursor: pointer;
-}
-
-.retro-button-secondary:hover {
-    background-color: #D0D0D0;
-}
-
-.retro-button-secondary:active {
-    border-style: inset;
-}
-
-.deploy-button {
-    font-family: Tahoma, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: bold;
-    color: #FFFFFF;
-    background-color: #CC0000;
-    padding: 15px 40px;
-    border: 3px outset #FF6666;
-    cursor: pointer;
-}
-
-.deploy-button:hover:not(:disabled) {
-    background-color: #DD0000;
-}
-
-.deploy-button:active:not(:disabled) {
-    border-style: inset;
-}
-
-.deploy-button:disabled {
-    background-color: #999999;
-    color: #CCCCCC;
-    border-color: #AAAAAA;
-    cursor: not-allowed;
-}
-
-/* === CONSOLE OUTPUT === */
-.console-output {
-    background-color: #000000;
-    border: 2px inset #333333;
-    padding: 10px;
-    height: 100px;
-    overflow-y: auto;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 11px;
-    color: #00FF00;
-}
-
-.console-output .error {
-    color: #FF0000;
-}
-
-.console-output .success {
-    color: #00FF00;
-}
-
-.console-output .info {
-    color: #FFFF00;
-}
-
-/* === STATUS INDICATORS === */
-.status-pending {
-    color: #999999;
-}
-
-.status-complete {
-    color: #009900;
-}
-
-.status-error {
-    color: #CC0000;
-}
-
-/* === SUMMARY TABLE === */
-.summary-table {
-    background-color: #FFFFFF;
+.download-button:visited {
+    color: #FFFFFF !important;
 }
 
 /* === FOOTER === */
@@ -393,12 +240,6 @@ fieldset legend {
     border: 1px inset #333333;
 }
 
-.t1-badge {
-    font-family: "Courier New", Courier, monospace;
-    font-size: 10px;
-    color: #006600;
-}
-
 /* === MISC === */
 pre {
     margin: 0;
@@ -409,14 +250,36 @@ center {
     text-align: center;
 }
 
-code {
+/* === T1 BADGE === */
+.t1-badge {
     font-family: "Courier New", Courier, monospace;
-    background-color: #E8E8E8;
-    padding: 1px 4px;
-    border: 1px solid #CCCCCC;
+    font-size: 10px;
+    color: #006600;
 }
 
-/* === STEP CONTENT VISIBILITY === */
-.step-content {
-    display: block;
+/* === GUESTBOOK BUTTON === */
+.guestbook-button {
+    font-size: 11px;
+    font-weight: bold;
+    color: #FFFFFF !important;
+    background-color: #669966;
+    padding: 4px 12px;
+    border: 2px outset #99CC99;
+    text-decoration: none !important;
+    display: inline-block;
+}
+
+.guestbook-button:hover {
+    background-color: #558855;
+    border-style: inset;
+    color: #FFFFFF !important;
+}
+
+.guestbook-button:visited {
+    color: #FFFFFF !important;
+}
+
+/* === MANIFESTO FIELDSET === */
+.manifesto-fieldset {
+    background-color: #FFFFF8;
 }
