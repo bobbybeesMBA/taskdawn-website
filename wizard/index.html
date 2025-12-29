@@ -705,29 +705,8 @@
 <br><br>
 
 <!-- JAVASCRIPT SPA LOGIC -->
-<script src="https://unpkg.com/libsodium-wrappers@0.7.13/dist/modules/libsodium-wrappers.js"></script>
-<script>
-// Wait for sodium to initialize before loading app
-window.sodiumReady = new Promise((resolve) => {
-    if (typeof sodium !== 'undefined' && sodium.ready) {
-        sodium.ready.then(resolve);
-    } else {
-        // Fallback: check every 100ms for 5 seconds
-        let attempts = 0;
-        const check = setInterval(() => {
-            attempts++;
-            if (typeof sodium !== 'undefined' && sodium.ready) {
-                clearInterval(check);
-                sodium.ready.then(resolve);
-            } else if (attempts > 50) {
-                clearInterval(check);
-                console.error('libsodium failed to load after 5 seconds');
-                resolve(); // Continue anyway, will show error in deploy
-            }
-        }, 100);
-    }
-});
-</script>
+<script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl-fast.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tweetnacl-util@0.15.1/nacl-util.min.js"></script>
 <script src="wizard-app.js"></script>
 
 </body>
