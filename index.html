@@ -3,9 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <meta name="generator" content="Notepad">
-    <meta name="keywords" content="task manager, email tasks, productivity, shareware, utility">
-    <meta name="description" content="Task Dawn - Ignite your day with prioritized tasks in your inbox">
-    <title>Task Dawn v1.0.0 Alpha - Task Priority Email System</title>
+    <meta name="keywords" content="task manager, email tasks, productivity, shareware, utility, setup wizard">
+    <meta name="description" content="Task Dawn Setup Wizard - Configure your task automation">
+    <title>Task Dawn v1.0.0 - Setup Wizard</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -33,12 +33,11 @@
                     </td>
                     <td valign="middle">
                         <span class="site-title">Task Dawn</span><br>
-                        <span class="version-tag">(v1.0.0 Alpha)</span><br>
+                        <span class="version-tag">(v1.0.0 Alpha) - Setup Wizard</span><br>
                         <span class="tagline"><i>"Ignite your day with prioritized tasks in your inbox."</i></span>
                     </td>
                     <td width="150" valign="middle" align="right">
-                        <img src="data:image/gif;base64,R0lGODlhIAAgAIAAAP/yAP///yH5BAAAAAAALAAAAAAgACAAQAJKhI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zvf+DwwKh8Si8YhMKpfMpvMJjUqn1Kr1is1qt9yu9wsOi8dkMgUAOw==" alt="NEW!" width="32" height="32" border="0">
-                        <font size="1" color="#FF0000"><b>NEW!</b></font>
+                        <span class="blink-text">&#9889; SETUP MODE</span>
                     </td>
                 </tr>
             </table>
@@ -49,22 +48,31 @@
         <!-- LEFT SIDEBAR NAVIGATION -->
         <td width="150" valign="top" class="sidebar-cell">
             <fieldset class="nav-fieldset">
-                <legend><b>Navigation</b></legend>
+                <legend><b>Setup Steps</b></legend>
                 <table width="100%" border="0" cellpadding="3" cellspacing="0">
-                    <tr><td>&raquo; <a href="#top" class="nav-link">[Home]</a></td></tr>
-                    <tr><td>&raquo; <a href="#howitworks" class="nav-link">[How it Works]</a></td></tr>
-                    <tr><td>&raquo; <a href="#download" class="nav-link">[Alpha Download]</a></td></tr>
-                    <tr><td>&raquo; <a href="#roadmap" class="nav-link">[Roadmap]</a></td></tr>
-                    <tr><td>&raquo; <a href="#guestbook" class="nav-link">[Guestbook]</a></td></tr>
+                    <tr><td id="nav-step-1" class="nav-step active-step">&raquo; [1. Google]</td></tr>
+                    <tr><td id="nav-step-2" class="nav-step">&raquo; [2. GitHub]</td></tr>
+                    <tr><td id="nav-step-3" class="nav-step">&raquo; [3. Deploy]</td></tr>
                 </table>
             </fieldset>
             <br>
             <fieldset class="nav-fieldset">
-                <legend><b>Quick Links</b></legend>
+                <legend><b>Status</b></legend>
+                <div id="status-box">
+                    <font size="1">
+                        <span id="status-google">&#9744; Google: Pending</span><br>
+                        <span id="status-github">&#9744; GitHub: Pending</span><br>
+                        <span id="status-deploy">&#9744; Deploy: Pending</span>
+                    </font>
+                </div>
+            </fieldset>
+            <br>
+            <fieldset class="nav-fieldset">
+                <legend><b>Help</b></legend>
                 <font size="1">
-                    <a href="#">Contact Author</a><br>
-                    <a href="#">Report Bug</a><br>
-                    <a href="#">Mailing List</a><br>
+                    <a href="#">FAQ</a><br>
+                    <a href="#">Documentation</a><br>
+                    <a href="mailto:support@taskdawn.com">Email Support</a>
                 </font>
             </fieldset>
             <br>
@@ -77,17 +85,47 @@
         <!-- MAIN CONTENT AREA -->
         <td width="650" valign="top" class="content-cell">
             
-            <!-- VALUE PROPOSITION BOX -->
+            <!-- PROGRESS BAR -->
             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td class="value-prop-box">
-                        <table width="100%" border="0" cellpadding="8" cellspacing="0">
+                    <td class="progress-container">
+                        <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                            <tr>
+                                <td align="center">
+                                    <font size="2"><b>Setup Progress</b></font>
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
-                                    <font size="2">
-                                        <b>&#9733; What is Task Dawn?</b><br><br>
-                                        <span class="highlight-text">Task Dawn aggregates tasks from Google and iCloud, ranks by urgency, age, and your settings, then emails a top 3 summary every weekday morning&mdash;no new apps, just enhanced routine.</span>
-                                    </font>
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td width="33%" align="center">
+                                                <div id="progress-step-1" class="progress-step progress-active">
+                                                    <div class="step-number">1</div>
+                                                    <div class="step-label">Connect Google</div>
+                                                </div>
+                                            </td>
+                                            <td width="33%" align="center">
+                                                <div id="progress-step-2" class="progress-step">
+                                                    <div class="step-number">2</div>
+                                                    <div class="step-label">Authorize GitHub</div>
+                                                </div>
+                                            </td>
+                                            <td width="33%" align="center">
+                                                <div id="progress-step-3" class="progress-step">
+                                                    <div class="step-number">3</div>
+                                                    <div class="step-label">Ignite Automation</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <div class="progress-bar-track">
+                                                    <div id="progress-bar-fill" class="progress-bar-fill" style="width: 16.5%;"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                         </table>
@@ -96,268 +134,329 @@
             </table>
             
             <br>
-            
-            <!-- HOW IT WORKS SECTION -->
-            <a name="howitworks"></a>
-            <fieldset>
-                <legend><b class="section-header">How it Works</b></legend>
-                <table width="100%" border="0" cellpadding="5" cellspacing="0">
-                    <tr>
-                        <td>
-                            <font size="2">
-                                Task Dawn runs as a background service on your PC. Simply configure your accounts and let it do the rest!
-                            </font>
-                            <br><br>
-                            <table width="100%" border="1" cellpadding="5" cellspacing="0" bordercolor="#999999" class="feature-table">
-                                <tr bgcolor="#E0E0E0">
-                                    <th width="30" align="center"><font size="2">#</font></th>
-                                    <th align="left"><font size="2">Step</font></th>
-                                    <th align="left"><font size="2">Description</font></th>
-                                </tr>
-                                <tr>
-                                    <td align="center"><font size="2">1</font></td>
-                                    <td><font size="2"><b>Connect</b></font></td>
-                                    <td><font size="2">Link your Google Tasks &amp; iCloud accounts via IFTTT Bridge</font></td>
-                                </tr>
-                                <tr bgcolor="#F5F5F5">
-                                    <td align="center"><font size="2">2</font></td>
-                                    <td><font size="2"><b>Configure</b></font></td>
-                                    <td><font size="2">Set your priority weights and email schedule</font></td>
-                                </tr>
-                                <tr>
-                                    <td align="center"><font size="2">3</font></td>
-                                    <td><font size="2"><b>Receive</b></font></td>
-                                    <td><font size="2">Get your Top 3 tasks every weekday morning!</font></td>
-                                </tr>
-                            </table>
-                            
-                            <br>
-                            
-                            <!-- iCloud Technical Note -->
-                            <table width="100%" border="1" cellpadding="8" cellspacing="0" bordercolor="#6699CC" bgcolor="#E8F4FF">
-                                <tr>
-                                    <td>
-                                        <font size="2">
-                                            <b>&#128221; iCloud Support:</b> Uses the 'Cloud-Bridge' method. Users connect iOS Reminders to Google Tasks via IFTTT. This allows Siri commands to flow directly into the Task Dawn engine.
-                                        </font>
-                                    </td>
-                                </tr>
-                            </table>
-                            
-                            <br>
-                            
-                            <!-- Ignite Engine Logic -->
-                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td>
-                                        <font size="2"><b>&#9881; The 'Ignite' Engine - Detailed Logic:</b></font><br><br>
-                                        <table width="100%" border="1" cellpadding="5" cellspacing="0" bordercolor="#999999" class="feature-table">
-                                            <tr bgcolor="#FFEECC">
-                                                <th width="80" align="center"><font size="2">Tier</font></th>
-                                                <th align="left"><font size="2">Condition</font></th>
-                                                <th width="120" align="center"><font size="2">Priority</font></th>
-                                            </tr>
-                                            <tr bgcolor="#FFFFFF">
-                                                <td align="center"><font size="2" color="#CC0000"><b>Tier 1</b></font></td>
-                                                <td><font size="2">Strings containing <b>'URGENT'</b></font></td>
-                                                <td align="center"><font size="2">&#9733;&#9733;&#9733; Highest</font></td>
-                                            </tr>
-                                            <tr bgcolor="#F5F5F5">
-                                                <td align="center"><font size="2" color="#CC6600"><b>Tier 2</b></font></td>
-                                                <td><font size="2">Overdue timestamps (past due date)</font></td>
-                                                <td align="center"><font size="2">&#9733;&#9733; High</font></td>
-                                            </tr>
-                                            <tr bgcolor="#FFFFFF">
-                                                <td align="center"><font size="2" color="#006699"><b>Tier 3</b></font></td>
-                                                <td><font size="2">First-In-First-Out / Creation date (oldest first)</font></td>
-                                                <td align="center"><font size="2">&#9733; Normal</font></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-            
-            <br>
-            
-            <!-- FEATURES SECTION -->
-            <fieldset>
-                <legend><b class="section-header">Features</b></legend>
-                <table width="100%" border="0" cellpadding="5" cellspacing="0">
-                    <tr>
-                        <td width="20" valign="top"><font color="#009900" size="2">&#10004;</font></td>
-                        <td>
-                            <font size="2"><b>Google Tasks &amp; iCloud Integration</b> (via IFTTT Bridge)</font><br>
-                            <font size="1" color="#666666">Seamlessly pulls tasks from both ecosystems into one unified view.</font>
-                        </td>
-                    </tr>
-                    <tr><td colspan="2"><hr size="1" color="#CCCCCC"></td></tr>
-                    <tr>
-                        <td width="20" valign="top"><font color="#009900" size="2">&#10004;</font></td>
-                        <td>
-                            <font size="2"><b>The 'Ignite' Ranking Algorithm</b> (Urgent &gt; Overdue &gt; Oldest)</font><br>
-                            <font size="1" color="#666666">Proprietary sorting ensures you always tackle what matters most first.</font>
-                        </td>
-                    </tr>
-                    <tr><td colspan="2"><hr size="1" color="#CCCCCC"></td></tr>
-                    <tr>
-                        <td width="20" valign="top"><font color="#009900" size="2">&#10004;</font></td>
-                        <td>
-                            <font size="2"><b>Zero-Dashboard Experience</b> (Everything happens in your Email)</font><br>
-                            <font size="1" color="#666666">No new apps to check. No websites to visit. Just your inbox.</font>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-            
-            <br>
-            
-            <!-- NO-APP MANIFESTO -->
-            <a name="manifesto"></a>
-            <fieldset class="manifesto-fieldset">
-                <legend><b class="section-header">&#9998; The No-App Manifesto</b></legend>
-                <table width="100%" border="0" cellpadding="10" cellspacing="0">
-                    <tr>
-                        <td bgcolor="#F5F5DC" style="border-left: 4px solid #996633;">
-                            <font size="2">
-                                <b>THE TASK DAWN PHILOSOPHY:</b><br><br>
-                                Most productivity tools want you to live inside their dashboard. We believe the best interface is <b><i>no interface</i></b>.<br><br>
-                                Task Dawn spends 2 seconds in your inbox and then gets out of your way. No syncing, no logging in, just clarity.
-                            </font>
-                            <br><br>
-                            <font size="1" color="#666666"><i>"The best app is the one you never have to open."</i> &mdash; Task Dawn Team</font>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-            
-            <br>
-            
-            <!-- DOWNLOAD SECTION -->
-            <a name="download"></a>
-            <fieldset>
-                <legend><b class="section-header">Alpha Download</b></legend>
-                <table width="100%" border="0" cellpadding="5" cellspacing="0">
-                    <tr>
-                        <td align="center">
-                            <table border="2" cellpadding="10" cellspacing="0" bordercolor="#003399" bgcolor="#FFFFCC">
-                                <tr>
-                                    <td align="center">
-                                        <font size="2">
-                                            <b>TaskDawn_v100a_Setup.exe</b><br>
-                                            <font size="1">(1.2 MB - Windows 98/ME/2000/XP)</font><br><br>
-                                            <a href="#" class="download-button">[&nbsp;DOWNLOAD&nbsp;NOW&nbsp;]</a><br><br>
-                                            <font size="1" color="#666666">MD5: 3f2a8b7c9d1e4f5a6b7c8d9e0f1a2b3c</font>
-                                        </font>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br>
-                            <font size="1" color="#FF0000">* Alpha software - Use at your own risk!</font>
-                            <br><br>
-                            <table width="90%" border="0" cellpadding="5" cellspacing="0" bgcolor="#F0F0F0">
-                                <tr>
-                                    <td align="center">
-                                        <font size="1" color="#333333">
-                                            <b>Requirements:</b> Google Account &amp; IFTTT (for iCloud users).<br>
-                                            No credit card required for Alpha testing.
-                                        </font>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-            
-            <br>
-            
-            <!-- ROADMAP SECTION -->
-            <a name="roadmap"></a>
-            <fieldset>
-                <legend><b class="section-header">Roadmap</b></legend>
-                <table width="100%" border="0" cellpadding="5" cellspacing="0">
-                    <tr>
-                        <td>
-                            <table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="#FFF8DC">
-                                <tr>
-                                    <td>
-                                        <font size="2" color="#996600"><b>&#9733; Coming Soon in v2.0 &#9733;</b></font>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br>
-                            <table width="100%" border="0" cellpadding="3" cellspacing="0">
-                                <tr>
-                                    <td width="20" valign="top"><font color="#999999" size="2">&#9675;</font></td>
-                                    <td><font size="2"><b>Smart Time-Blocking in Google Calendar</b></font><br>
-                                    <font size="1" color="#666666">Auto-schedule your top tasks into free calendar slots.</font></td>
-                                </tr>
-                                <tr>
-                                    <td width="20" valign="top"><font color="#999999" size="2">&#9675;</font></td>
-                                    <td><font size="2"><b>'Sunset' Weekly Performance Summaries</b></font><br>
-                                    <font size="1" color="#666666">End-of-week reports showing your task completion stats.</font></td>
-                                </tr>
-                                <tr>
-                                    <td width="20" valign="top"><font color="#999999" size="2">&#9675;</font></td>
-                                    <td><font size="2"><b>AI-Tone Settings</b> (Executive, Coach, or Drill Sergeant)</font><br>
-                                    <font size="1" color="#666666">Choose how Task Dawn "speaks" to you in emails.</font></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
-            
-            <br>
-            
-            <!-- GUESTBOOK SECTION -->
-            <a name="guestbook"></a>
-            <fieldset>
-                <legend><b class="section-header">&#128221; Guestbook</b></legend>
-                <table width="100%" border="0" cellpadding="5" cellspacing="0">
-                    <tr>
-                        <td align="center">
-                            <font size="2">
-                                <b>Sign our Guestbook!</b><br>
-                                <font size="1" color="#666666">Let us know what you think of Task Dawn.</font>
-                            </font>
-                            <br><br>
-                            <table border="1" cellpadding="8" cellspacing="0" bordercolor="#CCCCCC" bgcolor="#FFFFFF">
-                                <tr>
-                                    <td>
-                                        <font size="1">
-                                            <b>Mike from Ohio</b> - <i>12/20/2025</i><br>
-                                            "Finally, a tool that respects my time! Love it."
-                                        </font>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <font size="1">
-                                            <b>Sarah_Dev</b> - <i>12/18/2025</i><br>
-                                            "The IFTTT bridge is genius. Works with my iPhone!"
-                                        </font>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <font size="1">
-                                            <b>Anonymous</b> - <i>12/15/2025</i><br>
-                                            "Can't wait for the Drill Sergeant tone setting lol"
-                                        </font>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br>
-                            <a href="#" class="guestbook-button">[&nbsp;SIGN&nbsp;GUESTBOOK&nbsp;]</a>
-                        </td>
-                    </tr>
-                </table>
-            </fieldset>
+
+            <!-- ============================================== -->
+            <!-- STEP 1: GOOGLE OAUTH -->
+            <!-- ============================================== -->
+            <div id="step-1-content" class="step-content">
+                <fieldset>
+                    <legend><b class="section-header">Step 1: Connect Google Account</b></legend>
+                    <table width="100%" border="0" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td>
+                                <table width="100%" border="1" cellpadding="8" cellspacing="0" bordercolor="#6699CC" bgcolor="#E8F4FF">
+                                    <tr>
+                                        <td>
+                                            <font size="2">
+                                                <b>&#128274; Google OAuth2 Authentication</b><br><br>
+                                                Task Dawn needs access to your Google Tasks to fetch and prioritize your to-dos. Click the button below to authorize via Google's secure OAuth2 flow.
+                                            </font>
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                                <br>
+                                
+                                <!-- Google Client ID Input -->
+                                <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                                    <tr>
+                                        <td width="140"><font size="2"><b>Google Client ID:</b></font></td>
+                                        <td>
+                                            <input type="text" id="google-client-id" class="retro-input" style="width: 350px;" placeholder="Enter your Google OAuth Client ID">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><font size="2"><b>Client Secret:</b></font></td>
+                                        <td>
+                                            <input type="password" id="google-client-secret" class="retro-input" style="width: 350px;" placeholder="Enter your Google OAuth Client Secret">
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                                <br>
+                                
+                                <center>
+                                    <button type="button" id="btn-google-auth" class="retro-button" onclick="initiateGoogleOAuth()">
+                                        [&nbsp;&#9889; AUTHORIZE WITH GOOGLE&nbsp;]
+                                    </button>
+                                </center>
+                                
+                                <br>
+                                
+                                <!-- Token Display (Read-Only) -->
+                                <fieldset class="token-fieldset">
+                                    <legend><font size="1"><b>Authentication Tokens (Read-Only)</b></font></legend>
+                                    <table width="100%" border="0" cellpadding="3" cellspacing="0">
+                                        <tr>
+                                            <td width="100"><font size="1"><b>Access Token:</b></font></td>
+                                            <td>
+                                                <input type="text" id="google-access-token" class="retro-input token-display" readonly style="width: 100%;" value="[Not yet authorized]">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><font size="1"><b>Refresh Token:</b></font></td>
+                                            <td>
+                                                <input type="text" id="google-refresh-token" class="retro-input token-display" readonly style="width: 100%;" value="[Not yet authorized]">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><font size="1"><b>Expires:</b></font></td>
+                                            <td>
+                                                <input type="text" id="google-token-expiry" class="retro-input token-display" readonly style="width: 100%;" value="[N/A]">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                                
+                                <br>
+                                
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td align="right">
+                                            <button type="button" id="btn-step1-next" class="retro-button" onclick="goToStep(2)" disabled>
+                                                [&nbsp;NEXT: GitHub Setup &rarr;&nbsp;]
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- STEP 2: GITHUB AUTHORIZATION -->
+            <!-- ============================================== -->
+            <div id="step-2-content" class="step-content" style="display: none;">
+                <fieldset>
+                    <legend><b class="section-header">Step 2: Authorize GitHub</b></legend>
+                    <table width="100%" border="0" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td>
+                                <table width="100%" border="1" cellpadding="8" cellspacing="0" bordercolor="#6699CC" bgcolor="#E8F4FF">
+                                    <tr>
+                                        <td>
+                                            <font size="2">
+                                                <b>&#128193; GitHub Repository Setup</b><br><br>
+                                                Task Dawn will create a private repository called <code>task-dawn-engine</code> to store your automation scripts and securely hold your credentials as GitHub Secrets.
+                                            </font>
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                                <br>
+                                
+                                <!-- GitHub PAT Input -->
+                                <table width="100%" border="0" cellpadding="5" cellspacing="0">
+                                    <tr>
+                                        <td width="180"><font size="2"><b>Personal Access Token:</b></font></td>
+                                        <td>
+                                            <input type="password" id="github-pat" class="retro-input" style="width: 320px;" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                                <br>
+                                
+                                <table width="100%" border="0" cellpadding="5" cellspacing="0" bgcolor="#FFFFCC">
+                                    <tr>
+                                        <td>
+                                            <font size="1">
+                                                <b>&#9888; Required Token Scopes:</b> <code>repo</code>, <code>workflow</code><br>
+                                                <a href="https://github.com/settings/tokens/new" target="_blank">Generate a new token here &rarr;</a>
+                                            </font>
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                                <br>
+                                
+                                <center>
+                                    <button type="button" id="btn-github-check" class="retro-button" onclick="checkGitHubRepo()">
+                                        [&nbsp;&#128269; CHECK / CREATE REPO&nbsp;]
+                                    </button>
+                                </center>
+                                
+                                <br>
+                                
+                                <!-- Repository Status -->
+                                <fieldset class="token-fieldset">
+                                    <legend><font size="1"><b>Repository Status</b></font></legend>
+                                    <table width="100%" border="0" cellpadding="3" cellspacing="0">
+                                        <tr>
+                                            <td width="120"><font size="1"><b>Username:</b></font></td>
+                                            <td>
+                                                <input type="text" id="github-username" class="retro-input token-display" readonly style="width: 100%;" value="[Not connected]">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><font size="1"><b>Repo Name:</b></font></td>
+                                            <td>
+                                                <input type="text" id="github-repo-name" class="retro-input token-display" readonly style="width: 100%;" value="task-dawn-engine">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><font size="1"><b>Repo Status:</b></font></td>
+                                            <td>
+                                                <input type="text" id="github-repo-status" class="retro-input token-display" readonly style="width: 100%;" value="[Unknown]">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><font size="1"><b>Repo URL:</b></font></td>
+                                            <td>
+                                                <input type="text" id="github-repo-url" class="retro-input token-display" readonly style="width: 100%;" value="[N/A]">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                                
+                                <br>
+                                
+                                <!-- Console Log -->
+                                <fieldset>
+                                    <legend><font size="1"><b>Console Output</b></font></legend>
+                                    <div id="github-console" class="console-output">
+                                        <font size="1" color="#00FF00">&gt; Awaiting GitHub connection...</font>
+                                    </div>
+                                </fieldset>
+                                
+                                <br>
+                                
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td align="left">
+                                            <button type="button" class="retro-button-secondary" onclick="goToStep(1)">
+                                                [&nbsp;&larr; BACK&nbsp;]
+                                            </button>
+                                        </td>
+                                        <td align="right">
+                                            <button type="button" id="btn-step2-next" class="retro-button" onclick="goToStep(3)" disabled>
+                                                [&nbsp;NEXT: Deploy &rarr;&nbsp;]
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- STEP 3: DEPLOY -->
+            <!-- ============================================== -->
+            <div id="step-3-content" class="step-content" style="display: none;">
+                <fieldset>
+                    <legend><b class="section-header">Step 3: Ignite Automation</b></legend>
+                    <table width="100%" border="0" cellpadding="10" cellspacing="0">
+                        <tr>
+                            <td>
+                                <table width="100%" border="1" cellpadding="8" cellspacing="0" bordercolor="#009900" bgcolor="#E8FFE8">
+                                    <tr>
+                                        <td>
+                                            <font size="2">
+                                                <b>&#9889; Ready to Deploy!</b><br><br>
+                                                Click the button below to securely transfer your Google credentials to your GitHub repository as encrypted secrets. This enables the Task Dawn automation to run.
+                                            </font>
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                                <br>
+                                
+                                <!-- Pre-Deploy Summary -->
+                                <fieldset>
+                                    <legend><font size="1"><b>Deployment Summary</b></font></legend>
+                                    <table width="100%" border="1" cellpadding="5" cellspacing="0" bordercolor="#CCCCCC" class="summary-table">
+                                        <tr bgcolor="#E0E0E0">
+                                            <th align="left" width="200"><font size="2">Setting</font></th>
+                                            <th align="left"><font size="2">Value</font></th>
+                                            <th align="center" width="80"><font size="2">Status</font></th>
+                                        </tr>
+                                        <tr>
+                                            <td><font size="2">Google Account</font></td>
+                                            <td><font size="2" id="summary-google">Not Connected</font></td>
+                                            <td align="center"><span id="summary-google-status" class="status-pending">&#9744;</span></td>
+                                        </tr>
+                                        <tr bgcolor="#F5F5F5">
+                                            <td><font size="2">GitHub Repository</font></td>
+                                            <td><font size="2" id="summary-github">Not Connected</font></td>
+                                            <td align="center"><span id="summary-github-status" class="status-pending">&#9744;</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><font size="2">Secrets to Deploy</font></td>
+                                            <td><font size="2">GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN</font></td>
+                                            <td align="center"><span id="summary-secrets-status" class="status-pending">&#9744;</span></td>
+                                        </tr>
+                                    </table>
+                                </fieldset>
+                                
+                                <br>
+                                
+                                <center>
+                                    <table border="3" cellpadding="15" cellspacing="0" bordercolor="#CC0000" bgcolor="#FFFFCC">
+                                        <tr>
+                                            <td align="center">
+                                                <button type="button" id="btn-deploy" class="deploy-button" onclick="deploySecrets()">
+                                                    &#9889; [&nbsp;DEPLOY TO GITHUB&nbsp;] &#9889;
+                                                </button>
+                                                <br><br>
+                                                <font size="1" color="#666666">This will create GitHub Secrets in your repository</font>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </center>
+                                
+                                <br>
+                                
+                                <!-- Deploy Console -->
+                                <fieldset>
+                                    <legend><font size="1"><b>Deployment Log</b></font></legend>
+                                    <div id="deploy-console" class="console-output">
+                                        <font size="1" color="#00FF00">&gt; Ready to deploy. Click the button above to begin...</font>
+                                    </div>
+                                </fieldset>
+                                
+                                <br>
+                                
+                                <!-- Success Message (hidden initially) -->
+                                <div id="success-message" style="display: none;">
+                                    <table width="100%" border="3" cellpadding="15" cellspacing="0" bordercolor="#009900" bgcolor="#CCFFCC">
+                                        <tr>
+                                            <td align="center">
+                                                <font size="3" color="#006600">
+                                                    <b>&#10004; SETUP COMPLETE!</b>
+                                                </font>
+                                                <br><br>
+                                                <font size="2">
+                                                    Task Dawn is now configured. Your automation will begin running on the next scheduled trigger.
+                                                </font>
+                                                <br><br>
+                                                <a href="#" class="retro-button" id="link-to-repo">
+                                                    [&nbsp;VIEW YOUR REPOSITORY&nbsp;]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                
+                                <br>
+                                
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td align="left">
+                                            <button type="button" class="retro-button-secondary" onclick="goToStep(2)">
+                                                [&nbsp;&larr; BACK&nbsp;]
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
             
             <br>
             
@@ -381,20 +480,16 @@
                     &nbsp;&nbsp;|&nbsp;&nbsp;
                     <span class="t1-badge">&#9889; Proudly hosted on a T1 connection.</span>
                 </font>
-                <br><br>
-                <a href="http://validator.w3.org/check?uri=referer">
-                    <img src="data:image/gif;base64,R0lGODlhPAAUALMAAAAAAP///+Dg4MbGxqysrJKSknZ2dlpaWj4+PiIiIgYGBgAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAcABQAQARFEMhJq7046827/yAojmRpnmiqrmzrvnAsz3Rt33iu73zv/wMAAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQA7" alt="Valid HTML 4.01" border="0" width="60" height="20">
-                </a>
-                &nbsp;
-                <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                    <img src="data:image/gif;base64,R0lGODlhMgAUALMAAAAAAP///+fn58XFxaOjo4GBgV9fXz09PRsbGwAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAyABQAQARNEMhJq7046827/2AojmRpnmiqrmzrvnAsz3Rt33iu73zv/8CgcEgsGo/IpHLJbDqf0Kh0Sq1ar9isdsvter/gsHhMLpvP6LR6zW673/BYAQA7" alt="Valid CSS" border="0" width="50" height="20">
-                </a>
             </center>
         </td>
     </tr>
 </table>
 
 <br><br>
+
+<!-- JAVASCRIPT SPA LOGIC -->
+<script src="https://cdn.jsdelivr.net/npm/@octokit/rest@19/dist-web/octokit-rest.min.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>
