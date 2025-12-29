@@ -373,7 +373,9 @@ async function deploySecrets() {
             if (res.ok || res.status === 201 || res.status === 204) {
                 logToConsole(consoleId, name + ' deployed!', 'success');
             } else {
-                throw new Error('Failed to deploy ' + name);
+                const errBody = await res.json().catch(() => ({}));
+                logToConsole(consoleId, 'Status: ' + res.status + ' - ' + (errBody.message || 'Unknown'), 'error');
+                throw new Error('Failed to deploy ' + name + ': ' + (errBody.message || res.status));
             }
         }
         
@@ -399,16 +401,22 @@ async function deploySecrets() {
 }
 
 async function encryptSecret(secret, publicKey) {
+    // Check if libsodium is loaded
+    if (typeof sodium === 'undefined') {
+        console.error('libsodium not loaded! Encryption will fail.');
+        throw new Error('Encryption library not loaded. Please refresh the page.');
+    }
+    
     try {
-        if (typeof sodium !== 'undefined') {
-            await sodium.ready;
-            const binkey = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL);
-            const binsec = sodium.from_string(secret);
-            const enc = sodium.crypto_box_seal(binsec, binkey);
-            return sodium.to_base64(enc, sodium.base64_variants.ORIGINAL);
-        }
-    } catch (e) { }
-    return btoa(secret);
+        await sodium.ready;
+        const binkey = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL);
+        const binsec = sodium.from_string(secret);
+        const enc = sodium.crypto_box_seal(binsec, binkey);
+        return sodium.to_base64(enc, sodium.base64_variants.ORIGINAL);
+    } catch (e) {
+        console.error('Encryption error:', e);
+        throw new Error('Failed to encrypt secret: ' + e.message);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
