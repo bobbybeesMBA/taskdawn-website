@@ -334,23 +334,16 @@ async function deploySecrets() {
     btn.textContent = 'DEPLOYING...';
     
     logToConsole(consoleId, 'Starting deployment...', 'info');
-    logToConsole(consoleId, 'Waiting for encryption library...', 'info');
     
-    // Wait for sodium to be ready
-    if (window.sodiumReady) {
-        await window.sodiumReady;
-    }
-    
-    // Check if libsodium is loaded
-    if (typeof sodium === 'undefined') {
-        logToConsole(consoleId, 'ERROR: Encryption library failed to load.', 'error');
-        logToConsole(consoleId, 'Try: Hard refresh (Ctrl+Shift+R) or clear cache', 'error');
+    // Check if nacl is loaded
+    if (typeof nacl === 'undefined') {
+        logToConsole(consoleId, 'ERROR: Encryption library not loaded.', 'error');
         btn.disabled = false;
         btn.textContent = '⚡ [ DEPLOY TO GITHUB ] ⚡';
         return;
     }
     
-    logToConsole(consoleId, 'Encryption library loaded!', 'success');
+    logToConsole(consoleId, 'Encryption library ready', 'success');
     
     const headers = {
         'Authorization': 'token ' + AppState.github.pat,
@@ -362,9 +355,6 @@ async function deploySecrets() {
     const repo = AppState.github.repoName;
     
     try {
-        await sodium.ready;
-        logToConsole(consoleId, 'Encryption initialized', 'success');
-        
         logToConsole(consoleId, 'Getting public key...', 'info');
         const keyRes = await fetch('https://api.github.com/repos/' + owner + '/' + repo + '/actions/secrets/public-key', { headers });
         
@@ -385,11 +375,8 @@ async function deploySecrets() {
         for (const [name, value] of Object.entries(secrets)) {
             logToConsole(consoleId, 'Encrypting ' + name + '...', 'info');
             
-            // Encrypt the secret
-            const binkey = sodium.from_base64(keyData.key, sodium.base64_variants.ORIGINAL);
-            const binsec = sodium.from_string(value);
-            const encBytes = sodium.crypto_box_seal(binsec, binkey);
-            const encrypted = sodium.to_base64(encBytes, sodium.base64_variants.ORIGINAL);
+            // Encrypt using tweetnacl sealed box
+            const encrypted = sealedBox(value, keyData.key);
             
             logToConsole(consoleId, 'Deploying ' + name + '...', 'info');
             
@@ -431,23 +418,50 @@ async function deploySecrets() {
     }
 }
 
-async function encryptSecret(secret, publicKey) {
-    // Check if libsodium is loaded
-    if (typeof sodium === 'undefined') {
-        console.error('libsodium not loaded! Encryption will fail.');
-        throw new Error('Encryption library not loaded. Please refresh the page.');
-    }
+// Sealed box encryption using tweetnacl (compatible with libsodium crypto_box_seal)
+function sealedBox(message, publicKeyB64) {
+    // Decode base64 public key
+    const publicKey = base64Decode(publicKeyB64);
     
-    try {
-        await sodium.ready;
-        const binkey = sodium.from_base64(publicKey, sodium.base64_variants.ORIGINAL);
-        const binsec = sodium.from_string(secret);
-        const enc = sodium.crypto_box_seal(binsec, binkey);
-        return sodium.to_base64(enc, sodium.base64_variants.ORIGINAL);
-    } catch (e) {
-        console.error('Encryption error:', e);
-        throw new Error('Failed to encrypt secret: ' + e.message);
+    // Generate ephemeral keypair
+    const ephemeralKeyPair = nacl.box.keyPair();
+    
+    // Create nonce from ephemeral public key and recipient public key
+    const nonce = new Uint8Array(24);
+    const nonceInput = new Uint8Array(64);
+    nonceInput.set(ephemeralKeyPair.publicKey, 0);
+    nonceInput.set(publicKey, 32);
+    const nonceHash = nacl.hash(nonceInput).slice(0, 24);
+    nonce.set(nonceHash);
+    
+    // Encrypt the message
+    const messageBytes = nacl.util.decodeUTF8(message);
+    const ciphertext = nacl.box(messageBytes, nonce, publicKey, ephemeralKeyPair.secretKey);
+    
+    // Combine ephemeral public key + ciphertext
+    const sealed = new Uint8Array(ephemeralKeyPair.publicKey.length + ciphertext.length);
+    sealed.set(ephemeralKeyPair.publicKey, 0);
+    sealed.set(ciphertext, ephemeralKeyPair.publicKey.length);
+    
+    // Return base64 encoded
+    return base64Encode(sealed);
+}
+
+function base64Decode(str) {
+    const binary = atob(str);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
     }
+    return bytes;
+}
+
+function base64Encode(bytes) {
+    let binary = '';
+    for (let i = 0; i < bytes.length; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return btoa(binary);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
