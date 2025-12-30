@@ -1,8 +1,7 @@
 /*
- * Task Dawn v1.0.0 Alpha - Setup Wizard
- * Stylesheet for Task Dawn Setup Wizard
- * Compatible with IE6, Netscape 7, Mozilla Firefox 1.0
- * Last Updated: 2003
+ * Task Dawn v2.0.0 - Setup Wizard
+ * Simplified Centralized Onboarding
+ * Last Updated: 2025
  */
 
 /* === RESET & BASE === */
@@ -45,6 +44,38 @@ a:active {
 .header-cell {
     background-color: #E8E8E8;
     padding: 5px;
+}
+
+/* === GOOGLE SIGN IN BUTTON === */
+.google-button {
+    background-color: #FFFFFF;
+    border: 2px outset #CCCCCC;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.google-button:hover {
+    background-color: #F5F5F5;
+}
+
+.google-button:active {
+    border-style: inset;
+}
+
+/* === ADMIN JSON BOX === */
+.admin-json-box {
+    width: 100%;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    background-color: #FFFFEE;
+    border: 2px inset #CCCCCC;
+    padding: 8px;
+    resize: none;
+}
+
+.admin-json-box:focus {
+    background-color: #FFFFF0;
 }
 
 .site-title {
